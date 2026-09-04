@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+version: 2
+
+project_name: display-text-tv-webmcp
+
+builds:
+  - skip: true
+
+archives:
+  - id: static-site
+    meta: true
+    formats: [zip, tar.gz]
+    name_template: "{{ .ProjectName }}_{{ .Version }}"
+    files:
+      - src: out/**/*
+      - README.md
+      - LICENSE
+
+checksum:
+  name_template: checksums.txt
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+
+release:
+  draft: false
+  prerelease: auto
